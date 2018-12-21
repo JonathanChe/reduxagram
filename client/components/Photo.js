@@ -23,7 +23,7 @@ const Photo = (props) => {
         <figcaption>
           <p>{props.post.caption}</p>
           <div className="control-buttons">
-            <button className="likes">&hearts; {props.post.likes}</button>
+            <button onClick={props.increment.bind(null, props.i)}className="likes">&hearts; {props.post.likes}</button>
             <Link className="button" to={`/view/${props.post.code}`}>
               <span className="speech-bubble">
                 {props.comments[props.post.code] ? props.comments[props.post.code].length : 0}
