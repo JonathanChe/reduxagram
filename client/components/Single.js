@@ -1,10 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router';
+import Photo from './Photo';
+import Comments from './Comments';
 
-const Single = () => {
+const Single = (props) => {
+  const i = props.posts.findIndex((post) => post.code === props.params.postId);
+  const post = props.posts[i];
+
+  
   return (
     <div className="single-photo">
-      I'm the Single
+      <Photo i={i} post={post} {...props}/>
     </div>
   )
 }
