@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 const Photo = (props) => {
-  console.log('inside of photo ', props);
   return (
     <figure className="grid-figure">
       <div className="grid-photo-wrap">

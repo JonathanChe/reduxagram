@@ -6,11 +6,14 @@ function postComments(state = [], action) {
         text: action.comment,
       }]
     case 'REMOVE_COMMENT':
-      return state;
+    console.log('remove')
+      return [
+        ...state.slice(0, action.i),
+        ...state.slice(action.i + 1),
+      ]
     default:
       return state;
   }
-  return state;
 }
 
 function comments(state = [], action) {
