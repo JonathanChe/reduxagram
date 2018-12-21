@@ -1,8 +1,14 @@
 import React from 'react';
 
-const Comments = (props) => {
-  // render function
-  function renderComments(comment, i) {
+
+class Comments extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  renderComments(comment, i) {
     return (
       <div className="comment" key={i}>
         <p>
@@ -14,25 +20,29 @@ const Comments = (props) => {
     )
   }
 
-  function handleSubmit(e) {
+  handleSubmit(e) {
     e.preventDefault();
-    const { postId } = props.params;
-    const author = this.refs.author.value;
-    const comment = this.refs.comments.value;
+    console.log('inside of handle Submit ', this)
+    const { postId } = this.props.params;
 
-    props.addComment(postId, author, comment);
+    const author = this.refs.author.value;
+    const comment = this.refs.comment.value;
+
+    this.props.addComment(postId, author, comment);
   }
 
-  return (
-    <div className="comments">
-      {props.postComments.map(renderComments)}
-      <form ref="commentForm" className="comment-form" onSubmit={handleSubmit}>
-        <input type="text" ref="author" placeholder="author"></input>
-        <input type="text" ref="comment" placeholder="comment"></input>
-        <input type="submit" hidden />
-      </form>
-    </div>
-  )
+  render() {
+    return (
+      <div className="comments">
+        {this.props.postComments.map(this.renderComments)}
+        <form ref="commentForm" className="comment-form" onSubmit={this.handleSubmit}>
+          <input type="text" ref="author" placeholder="author"></input>
+          <input type="text" ref="comment" placeholder="comment"></input>
+          <input type="submit" hidden />
+        </form>
+      </div>
+    )
+  }
 }
 
 export default Comments;
